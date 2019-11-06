@@ -1,0 +1,8 @@
+---
+galaxy_info:
+  role_name: uclalib_role_elasticsearch
+  author: Anthony Vuong <avuong@cachemeoutside.io>
+  description: A role that installs and configures ElasticSearch
+  min_ansible_version: 2.8
+  galaxy_tags: []
+dependencies: []

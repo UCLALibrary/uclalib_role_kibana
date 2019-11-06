@@ -1,0 +1,6 @@
+- name: test.yml
+  connection: local
+  hosts: localhost
+
+  roles:
+    - { role: uclalib_role_kibana }

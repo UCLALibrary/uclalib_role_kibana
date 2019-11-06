@@ -1,0 +1,6 @@
+---
+- name: Install Kibana
+  include_tasks: install-kibana.yml
+
+- name: Configure Kibana
+  include_tasks: configure-kibana.yml

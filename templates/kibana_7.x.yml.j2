@@ -1,0 +1,47 @@
+# ---------------------------------- General -----------------------------------
+server.name: "{{ kibana_server_name }}"
+server.port: {{ kibana_port }}
+server.host: "{{ kibana_host }}"
+{% if kibana_rewrite_base_path.enabled %}
+server.basePath: {{ kibana_rewrite_base_path.path }}
+server.rewriteBasePath: {{ kibana_rewrite_base_path.enabled | lower }}
+{% endif %}
+server.maxPayloadBytes: {{ kibana_max_payload_bytes }}
+pid.file: "{{ kibana_pid_file }}"
+ops.interval: {{ kibana_ops_interval }}
+i18n.locale: "{{ kibana_locale }}"
+
+
+# ------------------------------------ ElasticSearch ------------------------------------
+elasticsearch.hosts: [{{ kibana_elasticsearch_hosts|join(",") }}]
+elasticsearch.preserveHost: {{ kibana_elasticsearch_preserve_hosts | lower }}
+elasticsearch.username: "{{ kibana_elasticsearch_username }}"
+elasticsearch.password: "{{ kibana_elasticsearch_password }}"
+{% if kibana_elasticsearch_ssl.enabled %}
+elasticsearch.ssl.certificate: "{{ kibana_elasticsearch_ssl.crt }}"
+elasticsearch.ssl.key: "{{ kibana_elasticsearch_ssl.key }}"
+elasticsearch.ssl.certificateAuthorities: ["{{ kibana_elasticsearch_ssl.ca|join(",") }}"]
+elasticsearch.ssl.verificationMode: {{ kibana_elasticsearch_ssl.verification_mode }}
+{% endif %}
+elasticsearch.pingTimeout: {{ kibana_elasticsearch_ping_timeout }}
+elasticsearch.requestTimeout: {{ kibana_elasticsearch_request_timeout }}
+elasticsearch.requestHeadersWhitelist: [{{ kibana_elasticsearch_request_headers_whitelist|join(",") }}]
+elasticsearch.customHeaders: {{ kibana_elasticsearch_custom_headers }}
+elasticsearch.shardTimeout: {{ kibana_elasticsearch_shard_timeout }}
+elasticsearch.startupTimeout: {{ kibana_elasticsearch_startup_timeout }}
+elasticsearch.logQueries: {{ kibana_elasticsearch_log_queries | lower }}
+kibana.index: "{{ kibana_index }}"
+kibana.defaultAppId: "{{ kibana_default_app_id }}"
+
+{% if kibana_server_ssl.enabled %}
+# ----------------------------------- Console SSL ------------------------------------
+server.ssl.enabled: {{ kibana_server_ssl.enabled | lower }}
+server.ssl.certificate: "{{ kibana_server_ssl.crt }}"
+server.ssl.key: "{{ kibana_server_ssl.key }}"
+{% endif %}
+
+# ---------------------------------- Logging -----------------------------------
+logging.dest: {{ kibana_logging_dest | lower }}
+logging.silent: {{ kibana_logging_silent | lower }}
+logging.quiet: {{ kibana_logging_quiet | lower }}
+logging.verbose: {{ kibana_logging_verbose | lower }}
