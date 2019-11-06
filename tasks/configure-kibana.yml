@@ -1,0 +1,26 @@
+---
+- name: Set up PID directory
+  file:
+    state: directory
+    path: "{{ kibana_pid_base_path }}"
+    owner: kibana
+    group: kibana
+    mode: 0775
+
+- name: Set up Kibana log directory
+  file:
+    state: directory
+    path: "{{ kibana_logging_base_path }}"
+    owner: kibana
+    group: kibana
+    mode: 0775
+
+- name: Upload Kibana Configuration File
+  template:
+    src: kibana_7.x.yml.j2
+    dest: /etc/kibana/kibana.yml
+    mode: 0660
+    owner: kibana
+    group: kibana
+  notify:
+    - restart kibana

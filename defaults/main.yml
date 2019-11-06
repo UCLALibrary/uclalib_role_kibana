@@ -1,0 +1,55 @@
+---
+# General configuration variables
+kibana_server_name: "your-server-name"
+kibana_port: 5601
+kibana_host: "localhost"
+kibana_rewrite_base_path:
+  enabled: false
+  path: ""
+
+kibana_max_payload_bytes: 1048576
+kibana_pid_base_path: "/var/run/kibana"
+kibana_pid_file: "{{ kibana_pid_base_path }}/kibana.pid"
+kibana_ops_interval: 5000
+kibana_locale: "en"
+kibana_index: ".kibana"
+kibana_default_app_id: "home"
+
+# Console SSL configuration
+kibana_server_ssl:
+  enabled: false
+  crt: "/path/to/crt"
+  ssl_key: "/path/to/key"
+
+# ElasticSearch configuration variables
+kibana_elasticsearch_hosts:
+  - "http://localhost:9200"
+
+kibana_elasticsearch_preserve_hosts: true
+kibana_elasticsearch_username: "kibana"
+kibana_elasticsearch_password: "pass"
+
+kibana_elasticsearch_ssl:
+  enabled: false
+  crt: "/path/to/your/client.crt"
+  key: "/path/to/your/client.key"
+  verification_mode: "full"
+  ca:
+    - "/path/to/your/CA.pem"
+
+kibana_elasticsearch_ping_timeout: 1500
+kibana_elasticsearch_request_timeout: 30000
+kibana_elasticsearch_request_headers_whitelist:
+  - "authorization"
+
+kibana_elasticsearch_custom_headers: "{}"
+kibana_elasticsearch_shard_timeout: 30000
+kibana_elasticsearch_startup_timeout: 5000
+kibana_elasticsearch_log_queries: false
+
+# Logging configurations
+kibana_logging_base_path: "/var/log/kibana"
+kibana_logging_dest: "{{ kibana_logging_base_path }}/kibana.log"
+kibana_logging_silent: false
+kibana_logging_quiet: false
+kibana_logging_verbose: false

@@ -1,0 +1,20 @@
+---
+- name: Configure Kibana repo
+  copy:
+    src: "kibana-yum-repo_{{ ansible_distribution_file_variety }}_{{ ansible_distribution_major_version }}"
+    dest: /etc/yum.repos.d/kibana.repo
+    mode: 0755
+    owner: root
+    group: root
+
+- name: Install Kibana Package
+  yum:
+    name: kibana
+    state: present
+
+- name: Start Kibana on boot
+  service:
+    name: kibana
+    enabled: yes
+  notify:
+    - start kibana
