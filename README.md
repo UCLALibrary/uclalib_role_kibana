@@ -6,19 +6,12 @@ Usage of this role will configure Kibana 7.x on CentOS and RedHat 7 systems.
 Requirements
 ------------
 
-No external requirements. If you want to use your own version of Java/OpenJDK, you'll have to set the `JAVA_HOME` environment variable under the `elastic` user.
+No external requirements.
 
 Role Variables
 --------------
 
-* Available Variables
-  * `cluster_name` | string
-  * `node_name` | string
-  * `is_elasticsearch_master`| bool
-  * `is_elasticsearch_data` | bool
-  * `bind_ip` | list<string>
-  * `bind_port` | int
-  * `discover_eligible_masters` | list<string>
+Please view the [defaults](defaults/main.yml) for available role variables and types.
 
 Dependencies
 ------------
@@ -28,26 +21,10 @@ No Dependencies
 Example Playbook
 ----------------
 
-### Master Eligible Node
+### Kibana with defaults configured
     - hosts: servers
       roles:
-         - { role: uclalib_role_elasticsearch }
-
-### Data Node
-    - hosts: servers
-      vars:
-        is_elasticsearch_master: false
-      roles:
-        - { role: uclalib_role_elasticsearch }
-
-### Coordinate Node
-    - hosts: servers
-      vars:
-        is_elasticsearch_master: false
-        is_elasticsearch_data: false
-      roles:
-        - { role: uclalib_role_elasticsearch }
-
+         - { role: uclalib_role_kibana }
 
 License
 -------
