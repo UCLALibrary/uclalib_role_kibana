@@ -20,7 +20,9 @@ elasticsearch.password: "{{ kibana_elasticsearch_password }}"
 {% if kibana_elasticsearch_ssl.enabled %}
 elasticsearch.ssl.certificate: "{{ kibana_elasticsearch_ssl.crt }}"
 elasticsearch.ssl.key: "{{ kibana_elasticsearch_ssl.key }}"
+{% if kibana_elasticsearch_ssl.ca is defined %}
 elasticsearch.ssl.certificateAuthorities: ["{{ kibana_elasticsearch_ssl.ca|join(",") }}"]
+{% endif %}
 elasticsearch.ssl.verificationMode: {{ kibana_elasticsearch_ssl.verification_mode }}
 {% endif %}
 elasticsearch.pingTimeout: {{ kibana_elasticsearch_ping_timeout }}
