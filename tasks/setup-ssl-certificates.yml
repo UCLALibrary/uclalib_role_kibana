@@ -1,0 +1,27 @@
+---
+- name: Copy PEM certificate
+  copy:
+    src: "{{ ssl_certificate_src_path }}"
+    dest: "{{ kibana_elasticsearch_ssl.crt }}"
+    owner: root
+    group: kibana
+    mode: 0660
+  when: kibana_elasticsearch_ssl.enabled
+
+- name: Copy PEM key
+  copy:
+    src: "{{ ssl_key_src_path }}"
+    dest: "{{ kibana_elasticsearch_ssl.key }}"
+    owner: root
+    group: kibana
+    mode: 0660
+  when: kibana_elasticsearch_ssl.enabled
+
+- name: Copy CA
+  copy:
+    src: "{{ ssl_ca_src_path }}"
+    dest: "{{ kibana_elasticsearch_ssl.ca }}"
+    owner: root
+    group: kibana
+    mode: 0664
+  when: kibana_elasticsearch_ssl.enabled and kibana_elasticsearch_ssl.ca is defined

@@ -2,5 +2,9 @@
 - name: Install Kibana
   include_tasks: install-kibana.yml
 
+- name: Setup SSL certificates
+  include_tasks: setup-ssl-certificates.yml
+  when: kibana_elasticsearch_ssl.enabled
+
 - name: Configure Kibana
   include_tasks: configure-kibana.yml

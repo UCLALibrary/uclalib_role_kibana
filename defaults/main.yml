@@ -29,13 +29,16 @@ kibana_elasticsearch_preserve_hosts: true
 kibana_elasticsearch_username: "kibana"
 kibana_elasticsearch_password: "pass"
 
+ssl_certificate_src_path: "/path/to/src/crt"
+ssl_key_src_path: "/path/to/src/key"
+ssl_ca_src_path: "/path/to/src/ca"
+ssl_base_path: "/etc/kibana"
+
 kibana_elasticsearch_ssl:
   enabled: false
-  crt: "/path/to/your/client.crt"
-  key: "/path/to/your/client.key"
-  verification_mode: "full"
-  ca:
-    - "/path/to/your/CA.pem"
+  crt: "{{ ssl_base_path }}/elastic.crt"
+  key: "{{ ssl_base_path }}/elastic.key"
+  verification_mode: "certificate"
 
 kibana_elasticsearch_ping_timeout: 1500
 kibana_elasticsearch_request_timeout: 30000
